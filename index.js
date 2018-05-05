@@ -350,7 +350,7 @@ class FakeVRDisplay extends MRDisplay {
     gamepads[1] = rightGamepad;
   }
 
-  requestPresent(layers) {
+  requestPresent() {
     return Promise.resolve()
       .then(() => {
         this.isPresenting = true;
