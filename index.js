@@ -147,7 +147,7 @@ class VRStageParameters {
   }
 }
 
-class MRDisplay extends EventEmitter {
+class MRDisplay {
   constructor(name) {
     this.name = name;
 
