@@ -379,8 +379,12 @@ class FakeVRDisplay extends MRDisplay {
 
 const leftGamepad = new Gamepad('left', 0);
 const rightGamepad = new Gamepad('right', 1);
+
 const gamepads = [null, null];
 const getGamepads = () => gamepads;
+
+const allGamepads = [leftGamepad, rightGamepad];
+const getAllGamepads = () => allGamepads;
 
 return {
   MRDisplay,
@@ -392,6 +396,7 @@ return {
   Gamepad,
   GamepadButton,
   getGamepads,
+  getAllGamepads,
 };
 
 };
