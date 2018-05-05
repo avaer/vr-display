@@ -402,7 +402,45 @@ return {
 };
 
 if (typeof window !== 'undefined') {
-  window.vrDisplay = vrDisplay(window.THREE);
+  const {
+    VRDisplay,
+    FakeVRDisplay,
+    VRFrameData,
+    VRPose,
+    VRStageParameters,
+    Gamepad,
+    GamepadButton,
+    createVRDisplay,
+    getGamepads,
+  } = vrDisplay(window.THREE);
+
+  if (window.VRDisplay === undefined) {
+    window.VRDisplay = VRDisplay;
+  }
+  if (window.FakeVRDisplay === undefined) {
+    window.FakeVRDisplay = FakeVRDisplay;
+  }
+  if (window.VRFrameData === undefined) {
+    window.VRFrameData = VRFrameData;
+  }
+  if (window.VRPose === undefined) {
+    window.VRPose = VRPose;
+  }
+  if (window.VRStageParameters === undefined) {
+    window.VRStageParameters = VRStageParameters;
+  }
+  if (window.Gamepad === undefined) {
+    window.Gamepad = Gamepad;
+  }
+  if (window.GamepadButton === undefined) {
+    window.GamepadButton = GamepadButton;
+  }
+  if (window.navigator.createVRDisplay === undefined) {
+    window.navigator.createVRDisplay = createVRDisplay;
+  }
+  if (window.navigator.getGamepads === undefined) {
+    window.navigator.getGamepads = getGamepads;
+  }
 } else {
   module.exports = vrDisplay;
 }
