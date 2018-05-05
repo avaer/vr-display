@@ -164,8 +164,6 @@ class MRDisplay {
     this._rightOffset = 0;
     this._rightFov = Float32Array.from([45, 45, 45, 45]);
     this._rafs = [];
-
-    this._window = null;
   }
 
   getLayers() {
@@ -222,28 +220,28 @@ class MRDisplay {
   }
 
   requestAnimationFrame(fn) {
-    const animationFrame = this._window.requestAnimationFrame(timestamp => {
-      this._rafs.splice(animationFrame, 1);
-      fn(timestamp);
-    });
-    this._rafs.push(animationFrame);
-    return animationFrame;
+    if (this.onrequestanimationframe) {
+      const animationFrame = this.onrequestanimationframe(timestamp => {
+        this._rafs.splice(animationFrame, 1);
+        fn(timestamp);
+      });
+      this._rafs.push(animationFrame);
+      return animationFrame;
+    }
   }
 
   cancelAnimationFrame(animationFrame) {
-    const result = this._window.cancelAnimationFrame(animationFrame);
-    const index = this._rafs.indexOf(animationFrame);
-    if (index !== -1) {
-      this._rafs.splice(index, 1);
+    if (this.oncancelanimationframe) {
+      const result = this.oncancelanimationframe(animationFrame);
+      const index = this._rafs.indexOf(animationFrame);
+      if (index !== -1) {
+        this._rafs.splice(index, 1);
+      }
+      return result;
     }
-    return result;
   }
 
   submitFrame() {}
-
-  setWindow(window) {
-    this._window = window;
-  }
 
   destroy() {
     for (let i = 0; i < this._rafs.length; i++) {
