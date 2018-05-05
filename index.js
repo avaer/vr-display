@@ -1,6 +1,6 @@
-const defaultCanvasSize = [1280, 1024];
-
 const vrDisplay = THREE => {
+
+const defaultCanvasSize = [1280, 1024];
 
 const localVector = new THREE.Vector3();
 // const localVector2 = new THREE.Vector3();
