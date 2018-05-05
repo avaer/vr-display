@@ -34,13 +34,7 @@ class VRFrameData {
     this.rightViewMatrix = this.leftViewMatrix.slice();
     this.pose = new VRPose();
 
-    // non-standard
-    this.hands = [
-      new Float32Array(handEntrySize),
-      new Float32Array(handEntrySize),
-    ];
-    this.planes = new Float32Array(maxNumPlanes * planeEntrySize);
-    this.numPlanes = 0;
+    VRFrameData.nonstandard.init.call(this);
   }
 
   copy(frameData) {
@@ -50,14 +44,13 @@ class VRFrameData {
     this.rightViewMatrix.set(frameData.rightViewMatrix);
     this.pose.copy(frameData.pose);
 
-    // non-standard
-    for (let i = 0; i < this.hands.length; i++) {
-      this.hands[i].set(frameData.hands[i]);
-    }
-    this.planes.set(frameData.planes);
-    this.numPlanes = frameData.numPlanes;
+    VRFrameData.nonstandard.copy.call(this, frameData);
   }
 }
+VRFrameData.nonstandard = {
+  init() {},
+  copy() {},
+};
 class GamepadButton {
   constructor() {
      this.value = 0;
@@ -120,8 +113,7 @@ class Gamepad {
     this.pose = new GamepadPose();
     this.axes = new Float32Array(2);
 
-    // non-standard
-    this.gesture = new GamepadGesture();
+    Gamepad.nonstandard.init.call(this);
   }
 
   copy(gamepad) {
@@ -132,8 +124,7 @@ class Gamepad {
     this.pose.copy(gamepad.pose);
     this.axes.set(gamepad.axes);
 
-    // non-standard
-    this.gesture.copy(gamepad.gesture);
+    Gamepad.nonstandard.copy.call(this, gamepad);
   }
 }
 class VRStageParameters {
