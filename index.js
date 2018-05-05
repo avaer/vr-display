@@ -195,7 +195,7 @@ class MRDisplay {
   }
 
   requestPresent(layers) {
-    return (nativeVr !== null ? nativeVr.requestPresent(layers) : Promise.resolve())
+    return (this.onrequestpresent ? this.onrequestpresent(layers) : Promise.resolve())
       .then(() => {
         this.isPresenting = true;
 
@@ -206,7 +206,7 @@ class MRDisplay {
   }
 
   exitPresent() {
-    return (nativeVr !== null ? nativeVr.exitPresent() : Promise.resolve())
+    return (this.onexitpresent ? this.onexitpresent() : Promise.resolve())
       .then(() => {
         this.isPresenting = false;
 
