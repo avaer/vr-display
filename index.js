@@ -84,17 +84,6 @@ class GamepadPose {
     this.angularAcceleration.set(pose.angularAcceleration);
   }
 }
-class GamepadGesture {
-  constructor() {
-    this.position = new Float32Array(3);
-    this.gesture = null;
-  }
-
-  copy(gesture) {
-    this.position.set(gesture.position);
-    this.gesture = gesture.gesture;
-  }
-}
 class Gamepad {
   constructor(hand, index) {
     this.hand = hand;
