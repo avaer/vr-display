@@ -346,8 +346,9 @@ class FakeVRDisplay extends MRDisplay {
     this._frameData.rightViewMatrix.set(this._frameData.leftViewMatrix);
     this._frameData.pose.set(this.position, this.quaternion);
 
-    gamepads[0] = leftGamepad;
-    gamepads[1] = rightGamepad;
+    const globalGamepads = getAllGamepads();
+    gamepads[0] = globalGamepads[0];
+    gamepads[1] = globalGamepads[1];
   }
 
   requestPresent() {
@@ -381,14 +382,19 @@ class FakeVRDisplay extends MRDisplay {
 
 const createVRDisplay = () => new FakeVRDisplay();
 
-const leftGamepad = new Gamepad('left', 0);
-const rightGamepad = new Gamepad('right', 1);
-
 const gamepads = [null, null];
 const getGamepads = () => gamepads;
 
-const allGamepads = [leftGamepad, rightGamepad];
-const getAllGamepads = () => allGamepads;
+let allGamepads = null;
+const getAllGamepads = () => {
+  if (allGamepads === null) { // defer so constructor overrides can be declared
+    allGamepads = [
+      new Gamepad('left', 0),
+      new Gamepad('right', 1),
+    ];
+  }
+  return allGamepads;
+};
 
 return {
   MRDisplay,
