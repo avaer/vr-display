@@ -127,6 +127,10 @@ class Gamepad {
     Gamepad.nonstandard.copy.call(this, gamepad);
   }
 }
+Gamepad.nonstandard = {
+  init() {},
+  copy() {},
+};
 class VRStageParameters {
   constructor() {
     // new THREE.Matrix4().compose(new THREE.Vector3(0, 0, 0), new THREE.Quaternion(), new THREE.Vector3(1, 1, 1)).toArray(new Float32Array(16))
