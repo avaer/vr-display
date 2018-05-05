@@ -3,10 +3,7 @@ const vrDisplay = THREE => {
 const defaultCanvasSize = [1280, 1024];
 
 const localVector = new THREE.Vector3();
-// const localVector2 = new THREE.Vector3();
-// const localQuaternion = new THREE.Quaternion();
 const localMatrix = new THREE.Matrix4();
-// const localMatrix2 = new THREE.Matrix4();
 
 class VRPose {
   constructor(position = new Float32Array(3), orientation = Float32Array.from([0, 0, 0, 1])) {
