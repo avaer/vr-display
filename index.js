@@ -262,7 +262,7 @@ class VRDisplay extends MRDisplay {
     frameData.copy(this._frameData);
   }
 
-  updatevrframe(update) {
+  update(update) {
     const {
       depthNear,
       depthFar,
