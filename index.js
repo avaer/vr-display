@@ -84,6 +84,20 @@ class GamepadPose {
     this.angularAcceleration.set(pose.angularAcceleration);
   }
 }
+class GamepadHapticActuator {
+  constructor(gamepad) {
+    this.gamepad = gamepad;
+  }
+  get type() {
+    return 'vibration';
+  }
+  set type(type) {}
+  pulse(value, duration) {
+    if (this.gamepad.ontriggerhapticpulse) {
+      this.gamepad.ontriggerhapticpulse(value, duration);
+    }
+  }
+}
 class Gamepad {
   constructor(hand, index) {
     this.hand = hand;
@@ -98,6 +112,9 @@ class Gamepad {
     ];
     this.pose = new GamepadPose();
     this.axes = new Float32Array(2);
+    this.hapticActuators = [new GamepadHapticActuator(this)];
+
+    this.ontriggerhapticpulse = null;
 
     Gamepad.nonstandard.init.call(this);
   }
