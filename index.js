@@ -202,9 +202,9 @@ class MRDisplay {
       this.onrequestpresent(layers);
     }
 
-    setImmediate(() => {
-      this.isPresenting = true;
+    this.isPresenting = true;
 
+    setImmediate(() => {
       if (this.onvrdisplaypresentchange) {
         this.onvrdisplaypresentchange();
       }
