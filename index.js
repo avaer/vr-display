@@ -231,9 +231,9 @@ class MRDisplay {
 
   requestAnimationFrame(fn) {
     if (this.onrequestanimationframe) {
-      const animationFrame = this.onrequestanimationframe((timestamp, frame) => {
+      const animationFrame = this.onrequestanimationframe(timestamp => {
         this._rafs.splice(animationFrame, 1);
-        fn(timestamp, frame);
+        fn(timestamp);
       });
       this._rafs.push(animationFrame);
       return animationFrame;
