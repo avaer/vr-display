@@ -252,6 +252,14 @@ class MRDisplay {
   }
 
   submitFrame() {}
+  
+  clone() {
+    const o = new this.constructor();
+    for (const k in this) {
+      o[k] = this[k];
+    }
+    return o;
+  }
 
   destroy() {
     for (let i = 0; i < this._rafs.length; i++) {
