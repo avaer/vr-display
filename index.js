@@ -383,17 +383,23 @@ class FakeVRDisplay extends MRDisplay {
   }
 
   requestPresent() {
-    return Promise.resolve()
-      .then(() => {
-        this.isPresenting = true;
-      });
+    this.isPresenting = true;
+
+    if (this.onvrdisplaypresentchange) {
+      this.onvrdisplaypresentchange();
+    }
+
+    return Promise.resolve();
   }
 
   exitPresent() {
-    return Promise.resolve()
-      .then(() => {
-        this.isPresenting = false;
-      });
+    this.isPresenting = false;
+
+    if (this.onvrdisplaypresentchange) {
+      this.onvrdisplaypresentchange();
+    }
+
+    return Promise.resolve();
   }
 
   getFrameData(frameData) {
