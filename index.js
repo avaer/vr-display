@@ -162,6 +162,11 @@ class MRDisplay {
     this.depthNear = 0.1;
     this.depthFar = 10000.0;
     this.stageParameters = new VRStageParameters();
+    
+    this.onrequestpresent = null;
+    this.onexitpresent = null;
+    this.onrequestanimationframe = null;
+    this.onvrdisplaypresentchange = null;
 
     this._width = defaultCanvasSize[0] / 2;
     this._height = defaultCanvasSize[1];
