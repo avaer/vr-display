@@ -162,7 +162,7 @@ class MRDisplay {
     this.depthNear = 0.1;
     this.depthFar = 10000.0;
     this.stageParameters = new VRStageParameters();
-    
+
     this.onrequestpresent = null;
     this.onexitpresent = null;
     this.onrequestanimationframe = null;
@@ -257,7 +257,7 @@ class MRDisplay {
   }
 
   submitFrame() {}
-  
+
   clone() {
     const o = new this.constructor();
     for (const k in this) {
