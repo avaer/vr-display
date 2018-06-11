@@ -210,11 +210,10 @@ class MRDisplay {
 
     this.isPresenting = true;
 
-    setImmediate(() => {
-      if (this.onvrdisplaypresentchange) {
-        this.onvrdisplaypresentchange();
-      }
-    });
+    if (this.onvrdisplaypresentchange) {
+      this.onvrdisplaypresentchange();
+    }
+
     return Promise.resolve();
   }
 
