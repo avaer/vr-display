@@ -383,6 +383,7 @@ class FakeVRDisplay extends MRDisplay {
       )
        .getInverse(localMatrix)
        .toArray(this._frameData.leftViewMatrix);
+      localMatrix.toArray(this._frameData.rightViewMatrix);
       this._frameData.rightViewMatrix.set(this._frameData.leftViewMatrix);
       this._frameData.pose.set(this.position, this.quaternion);
     } else {
