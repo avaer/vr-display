@@ -1,6 +1,6 @@
 {
   "name": "vr-display",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "Fake VRDisplay for JS",
   "main": "index.js",
   "scripts": {
