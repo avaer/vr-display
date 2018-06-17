@@ -1,6 +1,7 @@
 const vrDisplay = THREE => {
 
 const defaultCanvasSize = [1280, 1024];
+const defaultEyeSeparation = 0.625;
 
 const localVector = new THREE.Vector3();
 const localVector2 = new THREE.Vector3();
@@ -171,9 +172,9 @@ class MRDisplay {
 
     this._width = defaultCanvasSize[0] / 2;
     this._height = defaultCanvasSize[1];
-    this._leftOffset = Float32Array.from([-0.1, 0, 0]);
+    this._leftOffset = Float32Array.from([-defaultEyeSeparation/2, 0, 0]);
     this._leftFov = Float32Array.from([45, 45, 45, 45]);
-    this._rightOffset = Float32Array.from([0.1, 0, 0]);
+    this._rightOffset = Float32Array.from([defaultEyeSeparation/2, 0, 0]);
     this._rightFov = Float32Array.from([45, 45, 45, 45]);
     this._rafs = [];
   }
@@ -352,9 +353,9 @@ class FakeVRDisplay extends MRDisplay {
     this.depthFar = 10 * 1024;
     this._width = defaultCanvasSize[0];
     this._height = defaultCanvasSize[1];
-    this._leftOffset = Float32Array.from([-0.1, 0, 0]);
+    this._leftOffset = Float32Array.from([-defaultEyeSeparation/2, 0, 0]);
     this._leftFov = Float32Array.from([45, 45, 45, 45]);
-    this._rightOffset = Float32Array.from([0.1, 0, 0]);
+    this._rightOffset = Float32Array.from([defaultEyeSeparation/2, 0, 0]);
     this._rightFov = Float32Array.from([45, 45, 45, 45]);
     this.stageParameters = new VRStageParameters();
 
