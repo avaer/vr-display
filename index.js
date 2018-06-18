@@ -151,8 +151,8 @@ class VRStageParameters {
 }
 
 class MRDisplay {
-  constructor(name) {
-    this.name = name;
+  constructor(displayName) {
+    this.displayName = displayName;
 
     this.isPresenting = false;
     this.capabilities = {
@@ -274,8 +274,8 @@ class MRDisplay {
   }
 }
 class VRDisplay extends MRDisplay {
-  constructor(name = 'VR') {
-    super(name);
+  constructor(displayName = 'VR') {
+    super(displayName);
 
     this._frameData = new VRFrameData();
   }
