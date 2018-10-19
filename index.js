@@ -265,6 +265,10 @@ class MRDisplay {
     for (const k in this) {
       o[k] = this[k];
     }
+    if (o.session) {
+      o.session = o.session.clone();
+      o.session.device = o;
+    }
     return o;
   }
 
