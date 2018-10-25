@@ -369,7 +369,7 @@ class FakeVRDisplay extends MRDisplay {
   }
 
   setSize(width, height) {
-    this._width = this._stereo ? width : width / 2;
+    this._width = this._stereo ? width*2 : width;
     this._height = height;
   }
 
