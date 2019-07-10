@@ -91,8 +91,9 @@ class GamepadPose {
   }
 }
 class GamepadHapticActuator {
-  constructor(gamepad) {
+  constructor(gamepad, index) {
     this.gamepad = gamepad;
+    this.index = index;
   }
   get type() {
     return 'vibration';
@@ -100,13 +101,13 @@ class GamepadHapticActuator {
   set type(type) {}
   pulse(value, duration) {
     if (this.gamepad.ontriggerhapticpulse) {
-      this.gamepad.ontriggerhapticpulse(value, duration);
+      this.gamepad.ontriggerhapticpulse(value, duration, this.index);
     }
   }
 }
 class Gamepad {
   constructor(hand, index) {
-    this.id = 'OpenVR Gamepad';
+    this.id = (index < 0) ? 'Controller' : 'OpenVR Gamepad';
     this.hand = hand;
     this.index = index;
 
@@ -118,7 +119,9 @@ class Gamepad {
     }
     this.pose = new GamepadPose();
     this.axes = new Float32Array(10);
-    this.hapticActuators = [new GamepadHapticActuator(this)];
+    this.hapticActuators = [
+      new GamepadHapticActuator(this, 0),
+      new GamepadHapticActuator(this, 1)];
 
     this.ontriggerhapticpulse = null;
 
@@ -419,8 +422,9 @@ class FakeVRDisplay extends MRDisplay {
     }
 
     const globalGamepads = getAllGamepads();
-    gamepads[0] = globalGamepads[0];
-    gamepads[1] = globalGamepads[1];
+    for (let i = 0; i < globalGamepads.length; i++) {
+      gamepads[i] = globalGamepads[i];
+    }
   }
 
   requestPresent() {
@@ -478,7 +482,7 @@ class FakeVRDisplay extends MRDisplay {
 
 const createVRDisplay = () => new FakeVRDisplay();
 
-const gamepads = [null, null];
+const gamepads = [null, null, null, null, null, null];
 const getGamepads = () => gamepads;
 
 let allGamepads = null;
@@ -487,6 +491,10 @@ const getAllGamepads = () => {
     allGamepads = [
       new Gamepad('left', 0),
       new Gamepad('right', 1),
+      new Gamepad('player1', -1),
+      new Gamepad('player2', -2),
+      new Gamepad('player3', -3),
+      new Gamepad('player4', -4),
     ];
   }
   return allGamepads;
